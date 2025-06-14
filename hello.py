@@ -41,3 +41,60 @@ print(paramList[0])
 print(len(paramList))
 paramList.append('Adam')
 print(len(paramList))
+
+# name=input('please input your name:')
+# print('hello',name)
+print('中文测试正常')
+L= [
+    ['APPLE','GOOGLE','MICROSOFT'],
+    ['JAVA', 'PYTHON', 'RUBY'],
+    ['Adam', 'Haskell', 'Go']
+]
+print(L[0][0])
+print(L[1][1])
+print(L[2][2])
+age=3
+if age>=18:
+    print('adult')
+    print('third')
+elif age>=6:
+    print('teenager')
+else:
+    print('kid')
+
+score = 'B'
+match score:
+    case 'A':
+        print('优秀')
+    case 'B':
+        print('良好')
+    case 'C':
+        print('及格')
+    case 'D':
+        print('不及格')
+    case _:
+        print('bad')
+  
+age = 15
+match age:
+    # 匹配大于10并赋值到x
+    case x if x >10:
+        print('teenager')
+    case 10:
+        print('ten')
+    case _:
+        print('kid')
+print(x)
+
+args = ['gcc', 'world.c', 'hello.c']
+match args:
+    case ['gcc']:
+        print('gcc: missing source file(s)')
+    case ['gcc',file1, *files]:
+        print('gcc: ' + file1+' ,' + ' ,'.join(files))    
+    case [x, *rest]:
+        print(x)
+        print(rest)
+    case _:
+        print('no match')
+    
