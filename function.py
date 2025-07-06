@@ -55,6 +55,18 @@ def trim_spaces(s):
         end = end - 1
     return s[start:end+1]
 
+def find_min_max(nums):
+    if not nums:
+        return (None, None)
+    min_val = nums[0]
+    max_val = nums[0]
+    for n in nums:
+        if n < min_val:
+            min = n
+        elif n > max_val:
+            max = n
+    return (min_val, max_val)
+
 # 以下代码块代表只有在执行py文件时才会执行，普通方法调用是不会走到这里的
 if __name__ == '__main__':
     # 函数调用
