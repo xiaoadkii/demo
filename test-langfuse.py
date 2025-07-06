@@ -4,8 +4,8 @@ import requests
 from langfuse import get_client
 
 # 设置环境变量
-os.environ["LANGFUSE_SECRET_KEY"] = "sk-lf-c9c9c3ed-9ea8-434b-8b03-13059445a862"
-os.environ["LANGFUSE_PUBLIC_KEY"] = "pk-lf-15ffe0a8-fe0e-474b-8b11-a088ccbd27dc"
+os.environ["LANGFUSE_SECRET_KEY"] = "sk-lf-afd24698-cf76-4fde-9860-f979cf879abb"
+os.environ["LANGFUSE_PUBLIC_KEY"] = "pk-lf-ecfc3c70-4bcb-4303-82ca-7eae686072d4"
 os.environ["LANGFUSE_HOST"] = "http://localhost:3300"
 
 print("=== Langfuse 连接测试 ===")
