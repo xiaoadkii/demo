@@ -1,17 +1,14 @@
-# 配置langfuse
-# secrect key:sk-lf-c9c9c3ed-9ea8-434b-8b03-13059445a862
-# public key: pk-lf-15ffe0a8-fe0e-474b-8b11-a088ccbd27dc
+# 配置langfuse - 使用配置管理模块
 from langfuse import get_client
 import requests
 import os
 
-# 设置 DeepSeek 的 API Key（参考 langchain-agent.py 的配置）
-os.environ["DEEPSEEK_API_KEY"] = "sk-e8efc0c16aec40b898a6ea2556f9e7c3"
+# 导入配置管理模块
+from config import config
 
-# 设置 Langfuse 环境变量
-os.environ["LANGFUSE_SECRET_KEY"] = "sk-lf-c9c9c3ed-9ea8-434b-8b03-13059445a862"
-os.environ["LANGFUSE_PUBLIC_KEY"] = "pk-lf-212b5088-bee4-49f2-ab38-4194057e54b9"
-os.environ["LANGFUSE_HOST"] = "http://localhost:3300"
+# 配置会自动从 config.env 加载并设置环境变量
+print("正在初始化 Langfuse 客户端...")
+config.print_config()
 
 # 初始化 Langfuse 客户端
 langfuse = get_client()
@@ -38,7 +35,7 @@ with langfuse.start_as_current_span(name="deepseek-trace") as trace_span:
     # 创建生成记录
     with langfuse.start_as_current_generation(
         name="chat-with-deepseek",
-        model="deepseek-chat",
+        model=config.default_model,
         input="你好，DeepSeek!"
     ) as generation:
         print("创建生成记录成功")
@@ -47,13 +44,13 @@ with langfuse.start_as_current_span(name="deepseek-trace") as trace_span:
         print("正在调用 DeepSeek API...")
         try:
             res = requests.post(
-                "https://api.deepseek.com/v1/chat/completions",
+                f"{config.openai_api_base}/v1/chat/completions",
                 headers={
-                    "Authorization": f"Bearer {os.environ['DEEPSEEK_API_KEY']}",
+                    "Authorization": f"Bearer {config.deepseek_api_key}",
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "deepseek-chat",
+                    "model": config.default_model,
                     "messages": [{"role": "user", "content": "你好，DeepSeek!"}]
                 }
             )
