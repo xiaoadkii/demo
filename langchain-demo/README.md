@@ -41,7 +41,13 @@ LOG_LEVEL=DEBUG
 # 测试配置
 python config.py
 
-# 运行 LangChain Agent
+# 🚀 快速启动完整Agent项目（推荐）
+python quick_start.py
+
+# 运行完整智能Agent项目
+python agent_project.py
+
+# 运行基础 LangChain Agent
 python langchain-agent.py
 
 # 运行 Langfuse 集成示例
@@ -54,8 +60,10 @@ python langfuse-cal.py
 langchain-demo/
 ├── config.env              # 环境变量配置文件
 ├── config.py               # 配置管理模块
-├── langchain-agent.py      # LangChain Agent 示例
+├── langchain-agent.py      # LangChain Agent 基础示例
 ├── langfuse-cal.py         # Langfuse 集成示例
+├── agent_project.py        # 完整智能Agent项目 ⭐
+├── quick_start.py          # 快速启动脚本 🚀
 ├── requirements.txt        # 项目依赖
 └── README.md              # 项目说明
 ```
@@ -124,6 +132,82 @@ debug_mode = custom_config.get_bool("DEBUG", False)
 2. **添加新配置**: 在 `config.py` 中添加对应的属性方法
 3. **测试配置**: 运行 `python config.py` 验证配置
 4. **使用配置**: 导入 `config` 对象并使用其属性
+
+## 🤖 完整智能Agent项目
+
+### 🌟 项目亮点
+
+`agent_project.py` 是一个功能完整的智能Agent项目，包含：
+
+#### 🛠️ 多种工具集成
+- **计算器**: 安全的数学计算（支持复杂表达式）
+- **天气查询**: 模拟天气数据查询
+- **文件管理**: 创建、读取、列出文件
+- **数据分析**: 统计分析（均值、中位数、标准差等）
+- **任务管理**: 创建、列出、更新任务状态
+- **图表数据**: 生成可视化数据
+
+#### 🎯 核心功能
+- **智能对话**: 使用 ConversationBufferMemory 保持上下文
+- **完整观测**: 集成 Langfuse 全程追踪
+- **错误处理**: 优雅处理异常和解析错误  
+- **多种模式**: 交互、演示、单次任务
+- **日志记录**: 详细的操作日志
+
+#### 🚀 快速体验
+
+```bash
+# 方式1: 使用快速启动器（推荐新手）
+python quick_start.py
+
+# 方式2: 直接运行完整项目
+python agent_project.py
+```
+
+### 📖 使用示例
+
+#### 交互对话示例：
+```
+👤 您: 帮我计算一下 25 的平方根加上 100 除以 4
+🤖 Agent: 我来帮您计算...
+计算结果: 30.0
+
+👤 您: 创建一个任务：学习LangChain|深入学习Agent开发|high  
+🤖 Agent: ✅ 任务创建成功 (ID: 1): 学习LangChain
+
+👤 您: 分析这些数字：1,4,7,10,13,16,19,22,25
+🤖 Agent: 📊 数据分析结果:
+数据: [1.0, 4.0, 7.0, 10.0, 13.0, 16.0, 19.0, 22.0, 25.0]
+总数: 9
+平均值: 13.00
+中位数: 13.00
+...
+```
+
+#### 演示模式功能：
+- 自动执行8个预设任务
+- 展示所有工具功能
+- 完整的 Langfuse 追踪记录
+
+### 🎮 运行模式
+
+1. **交互模式**: 与Agent持续对话
+2. **演示模式**: 自动运行预设任务
+3. **单次任务**: 执行单个任务后退出
+
+### 🔍 观测和调试
+
+所有Agent操作都会被 Langfuse 自动追踪：
+- 用户输入和Agent回复
+- 工具调用和结果
+- 错误信息和性能指标
+- 对话历史和上下文
+
+在 Langfuse 控制台中可以看到：
+- 完整的对话链路
+- 每个工具的执行时间
+- 模型的 token 使用量
+- 错误堆栈和调试信息
 
 ## 📚 相关链接
 
